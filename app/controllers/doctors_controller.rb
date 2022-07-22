@@ -2,6 +2,7 @@ class DoctorsController < ApplicationController
   # before_action :authenticate_user!
 
   def index
+    p current_user&.username, "HELLO DOCTORS INDEX"
     @doctors = Doctor.all
     render json: @doctors
   end

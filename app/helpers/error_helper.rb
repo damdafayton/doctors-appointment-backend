@@ -5,7 +5,8 @@ module ErrorHelper
       show: 'Appointment can not be found.',
       invalid_date: 'Date format is wrong.',
       update_not_allowed: 'You are not allowed to update this appointment.',
-      delete_not_allowed: 'You are not allowed to delete this appointment.'
+      delete_not_allowed: 'You are not allowed to delete this appointment.',
+      unkown: 'There was an error.',
       # missing_param: 'param is missing or the value is empty',
       # wrong_date: 'invalid date'
     }

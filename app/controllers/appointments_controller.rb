@@ -1,19 +1,10 @@
 require 'pry'
 
 class AppointmentsController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_appointment, only: %i[show update destroy]
-  # before_action :authenticate_user
   rescue_from Date::Error, with: :invalid_date
 
-  # before_action :configure_permitted_parameters, if: :devise_controller?
-
-  # def configure_permitted_parameters
-  #   devise_parameter_sanitizer.for(:create) { |u| u.permit(:appointment, :doctor_id, :date, :user_id) }
-  # end
-
-
-  # GET /appointments
   def index
     # binding.pry
     p current_user.username, 'HELLO APPOINTMENTS INDEX'
@@ -35,36 +26,37 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   def create
     params[:appointment][:user_id] = current_user&.id
-    p 'CREATE APPO', current_user
+    # p 'CREATE APPO', current_user
     params[:appointment][:date] = params[:appointment][:date]&.to_datetime
     
-    p params[:appointment]
+    # p params[:appointment]
     @appointment = Appointment.new(params_permit)
 
     if @appointment.save
-      render json: @appointment, status: :created, location: @appointment
+      # render json: @appointment, status: :created, location: @appointment
+      render json: { success: appointment_success(:created) }, status: 201
     else
-      render json: { error: @appointment.errors }, status: :unprocessable_entity
+      render json: { error: appointment_error(:unkown) }, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /appointments/1
-  def update
-    unless request_user_owns_the_appointment?
-      render json: { error: appointment_error(:update_now_allowed) }, status: 405
-      return
-    end
+  # def update
+  #   unless request_user_owns_the_appointment?
+  #     render json: { error: appointment_error(:update_now_allowed) }, status: 405
+  #     return
+  #   end
 
-    # Inject correct params
-    params[:user_id] = request_user_id
-    params[:date] = params[:date].to_datetime if params[:date]
+  #   # Inject correct params
+  #   params[:user_id] = request_user_id
+  #   params[:date] = params[:date].to_datetime if params[:date]
 
-    if @appointment.update(params_permit)
-      render json: @appointment
-    else
-      render json: { error: @appointment.errors }, status: :unprocessable_entity
-    end
-  end
+  #   if @appointment.update(params_permit)
+  #     render json: @appointment
+  #   else
+  #     render json: { error: @appointment.errors }, status: :unprocessable_entity
+  #   end
+  # end
 
   # DELETE /appointments/1
   def destroy

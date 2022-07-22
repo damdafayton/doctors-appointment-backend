@@ -10,6 +10,11 @@ Rails.application.routes.draw do
                   registrations: 'users/registrations'
               }
 
+  devise_scope :user do
+    # get "/some/route" => "some_devise_controller"
+    get "#{api_route}/users/sessions/check", to: 'users/sessions#check'
+  end
+
   # namespace :api do
   #   # post '/users', to: 'users#create'
   #   # post '/auth', to: 'users#authenticate'
@@ -18,6 +23,6 @@ Rails.application.routes.draw do
   resources :doctors, path: "#{api_route}/doctors", only: [:index, :show]
   resources :appointments, path: "#{api_route}/appointments"
 
-  root to: redirect('public/index.html') 
-  get '/test/login', to: 'api/users#test_login'
+  root to: redirect('public/index.html')
+  get '/test/login', to: 'users#test_login'
 end

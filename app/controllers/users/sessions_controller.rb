@@ -1,15 +1,22 @@
 class Users::SessionsController < Devise::SessionsController
   respond_to :json
 
+
+
+  def check
+    p 'SESSION CHECK'
+    render json: { user: current_user }, status: :ok
+  end
+
   private
 
   def respond_with(_resource, _opts = {})
     if current_user
       p current_user, 'HELLO LOGGED IN :)'
-      render json: { message: 'Logged.' }, status: :ok
+      render json: { success: 'Logged in.' }, status: :ok
     else
       p current_user, 'HELLO LOG IN ERROR!!'
-      render json: { message: 'Please log in.' }, status: 402
+      render json: { error: 'Please log in.' }, status: 402
     end
   end
 
@@ -23,10 +30,10 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def log_out_success
-    render json: { message: 'Logged out.' }, status: :ok
+    render json: { success: 'Logged out.' }, status: :ok
   end
 
   def log_out_failure
-    render json: { message: 'Logged out failure.' }, status: :unauthorized
+    render json: { error: 'Log out failure.' }, status: :unauthorized
   end
 end
