@@ -97,6 +97,6 @@ RSpec.configure do |config|
   #   @errors = errors
   # }
   config.before(:each, type: :request) do
-    host! 'localhost:3010'
+    host! 'localhost:3000'
   end
 end
