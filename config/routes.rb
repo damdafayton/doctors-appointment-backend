@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   resources :doctors, path: "#{api_route}/doctors", only: [:index, :show]
   resources :appointments, path: "#{api_route}/appointments"
 
-  root path:'public/index.html' # to: 'home#index'
+  root to: redirect('public/index.html') 
   get '/test/login', to: 'api/users#test_login'
 end
