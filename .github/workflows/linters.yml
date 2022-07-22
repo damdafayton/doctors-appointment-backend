@@ -1,0 +1,71 @@
+name: Linters
+
+on: [pull_request, push]
+
+env:
+  FORCE_COLOR: 1
+  RUBY_VERSION: 3.1.x
+  POSTGRES_TEST_DATABASE: rails_doctor_booking_test
+  DB_USERNAME: postgres
+  DB_PASSWORD: postgres
+
+jobs:
+  rubocop:
+    name: Rubocop
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 3.0.x
+      - name: Setup Rubocop
+        run: |
+          gem install --no-document rubocop -v '>= 1.0, < 2.0' # https://docs.rubocop.org/en/stable/installation/
+          [ -f .rubocop.yml ] || wget https://raw.githubusercontent.com/microverseinc/linters-config/master/ror/.rubocop.yml
+      - name: Rubocop Report
+        run: rubocop --color
+  nodechecker:
+    name: node_modules checker
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check node_modules existence
+        run: |
+          if [ -d "node_modules/" ]; then echo -e "\e[1;31mThe node_modules/ folder was pushed to the repo. Please remove it from the GitHub repository and try again."; echo -e "\e[1;32mYou can set up a .gitignore file with this folder included on it to prevent this from happening in the future." && exit 1; fi
+  rspec-test:
+    name: RSpec
+    needs: Rubocop
+    runs-on: ubuntu-18.04
+    services:
+      postgres:
+        image: postgres:11
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ${{ env.POSTGRES_TEST_DATABASE }}
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+      - name: Install postgres client
+        run: sudo apt-get install libpq-dev
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundler install
+      - name: Create database
+        run: |
+          bundler exec rails db:create RAILS_ENV=test
+          bundler exec rails db:migrate RAILS_ENV=test
+          bundler exec rails db:seed RAILS_ENV=test
+      - name: Run tests
+        run: bundler exec rake
+      - name: Upload coverage results
+        uses: actions/upload-artifact@master
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage

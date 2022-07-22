@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5dd98aef.css",
+    "main.js": "/static/js/main.34ee8508.js",
+    "static/media/healthcare-technology-doctor-using-digital-tablet-icon-medical-network-hospital-background-162019727.jpg": "/static/media/healthcare-technology-doctor-using-digital-tablet-icon-medical-network-hospital-background-162019727.1d22035673a61d38367f.jpg",
+    "index.html": "/index.html",
+    "main.5dd98aef.css.map": "/static/css/main.5dd98aef.css.map",
+    "main.34ee8508.js.map": "/static/js/main.34ee8508.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5dd98aef.css",
+    "static/js/main.34ee8508.js"
+  ]
+}

@@ -1,0 +1,70 @@
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  '/api/doctors/{id}':
+    get:
+      summary: Retrieves a doctor
+      tags:
+        - Doctors
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: a doctor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  speciality:
+                    type: string
+                  photo:
+                    type: string
+                  price:
+                    type: number
+                    format: float
+                  bio:
+                    type: string
+                  created_at:
+                    format: date-time
+                  updated_at:
+                    format: date-time
+  '/api/users':
+    post:
+      summary: Register a user
+      tags:
+        - Users
+      parameters: []
+      responses:
+        '201':
+          description: user created successfully
+        '422':
+          description: invalid request
+        '403':
+          description: forbidden request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_name:
+                  type: string
+                email:
+                  type: string
+              required:
+                - username
+                - email
+servers:
+  - url: '{defaultHost}'
+    variables:
+      defaultHost:
+        default: http://localhost:3000
