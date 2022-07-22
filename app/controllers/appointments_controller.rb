@@ -9,8 +9,9 @@ class AppointmentsController < ApplicationController
   # GET /appointments
   def index
     # binding.pry
+    p current_user.username, 'HELLO APPOINTMENTS INDEX' 
     if current_user
-      user = User.where({ username: current_user })
+      user = User.where({ username: current_user.username })
       @appointments = Appointment.where({ user_id: user[0]&.id }).includes(:doctor).to_json(include: :doctor)
 
       render json: @appointments, status: :ok

@@ -4,6 +4,19 @@ class ApplicationController < ActionController::API
   include ActionController::Cookies
   include ErrorHelper
   include SuccessHelper
+
+  # respond_to :json #, :html 
+  # protect_from_forgery with: :null
+
+  # before_filter do
+  #   user_email = params[:user_email].presence
+  #   user       = user_email && User.find_by_email(user_email)
+
+  #   if user && Devise.secure_compare(user.authentication_token, params[:auth_token])
+  #     sign_in user, store: false
+  #   end
+  # end
+
   # @current_user = nil # parse request and check username
 
   # def authenticate_user

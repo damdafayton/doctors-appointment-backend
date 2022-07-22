@@ -50,11 +50,12 @@ now = DateTime.now
 
 user_1 = User.create(
   username: "bobbob", email: "bob@fake", 
-  # password: "123456"
+  password: "aa123456"
 )
+
 user_2 = User.create(
   username: "janejane", email: "jane@fake", 
-  # password: "123456"
+  password: "aa123456"
 )
 
 appointment_1 = Appointment.create(user: user_1, doctor: doctor_1, date: now)
