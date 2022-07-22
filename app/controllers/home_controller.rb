@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    render json: { message: 'Welcome to the API' }
+    redirect_to ('../../build/index.html')  
   end
 end
