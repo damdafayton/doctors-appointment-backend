@@ -49,11 +49,11 @@ doctor_6 = Doctor.create(
 now = DateTime.now
 
 user_1 = User.create(
-  user_name: "bobbob", email: "bob@fake", 
+  username: "bobbob", email: "bob@fake", 
   # password: "123456"
 )
 user_2 = User.create(
-  user_name: "janejane", email: "jane@fake", 
+  username: "janejane", email: "jane@fake", 
   # password: "123456"
 )
 

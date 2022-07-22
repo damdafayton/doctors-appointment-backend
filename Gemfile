@@ -6,6 +6,11 @@ gem 'pry', '~> 0.13.1'
 gem 'rswag-api'
 gem 'rswag-ui'
 
+gem 'devise'
+gem 'devise-jwt'
+
+gem 'rack-cors'
+
 ruby '3.1.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"

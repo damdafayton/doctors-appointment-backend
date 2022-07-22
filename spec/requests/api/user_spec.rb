@@ -11,19 +11,19 @@ RSpec.describe 'api/users', type: :request do
       {
         type: :object,
         properties: {
-          user_name: { type: :string },
+          username: { type: :string },
           email: { type: :string }
         },
-        required: %w[user_name email]
+        required: %w[username email]
       }
 
       response '201', 'User created successfully' do
-        let(:user) { { user_name: 'aquaman', email: 'aquaman@gmail.com' } }
+        let(:user) { { username: 'aquaman', email: 'aquaman@gmail.com' } }
         run_test!
       end
 
       response '422', 'invalid request' do
-        let(:user) { { user_name: 'birdman' } }
+        let(:user) { { username: 'birdman' } }
         run_test!
       end
     end
@@ -36,17 +36,17 @@ RSpec.describe 'api/users', type: :request do
       parameter name: :user, in: :body, schema: {
         type: :object,
         properties: {
-          user_name: { type: :string }
+          username: { type: :string }
         },
-        required: ['user_name']
+        required: ['username']
       }
       response '200', 'User logged in successfully' do
-        let(:user) { { user_name: 'bobbob' } }
+        let(:user) { { username: 'bobbob' } }
         run_test!
       end
 
       response '404', 'Not found' do
-        let(:user) { { user_name: 'bully2' } }
+        let(:user) { { username: 'bully2' } }
         run_test!
       end
     end

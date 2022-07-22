@@ -56,7 +56,7 @@ paths:
             schema:
               type: object
               properties:
-                user_name:
+                username:
                   type: string
                 email:
                   type: string
@@ -67,4 +67,4 @@ servers:
   - url: '{defaultHost}'
     variables:
       defaultHost:
-        default: http://localhost:3000
+        default: http://localhost:3010

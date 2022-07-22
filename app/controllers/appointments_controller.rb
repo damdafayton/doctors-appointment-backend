@@ -1,16 +1,16 @@
 require 'pry'
 
 class AppointmentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_appointment, only: %i[show update destroy]
-  before_action :authenticate_user
-
+  # before_action :authenticate_user
   rescue_from Date::Error, with: :invalid_date
 
   # GET /appointments
   def index
     # binding.pry
-    if @current_user
-      user = User.where({ user_name: @current_user })
+    if current_user
+      user = User.where({ username: current_user })
       @appointments = Appointment.where({ user_id: user[0]&.id }).includes(:doctor).to_json(include: :doctor)
 
       render json: @appointments, status: :ok
