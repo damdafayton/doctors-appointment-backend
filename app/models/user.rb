@@ -7,20 +7,18 @@ class User < ApplicationRecord
   #        :recoverable, :rememberable, :validatable
 
   devise :database_authenticatable, :registerable,
-        :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
-        
+         :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
+
   validates :username, presence: true, length: { maximum: 20, minimum: 6 }
   validates :email, presence: true, length: { maximum: 100 }
 
-  
+  #   devise :database_authenticatable, :registerable,
+  #       # :recoverable, :rememberable, :trackable, :validatable
 
-#   devise :database_authenticatable, :registerable,
-#       # :recoverable, :rememberable, :trackable, :validatable
+  # + validates :username, uniqueness: { case_sensitive: false }, presence: true,
+  #             allow_blank: false, format: { with: /\A[a-zA-Z0-9]+\z/ }
 
-# + validates :username, uniqueness: { case_sensitive: false }, presence: true, 
-#             allow_blank: false, format: { with: /\A[a-zA-Z0-9]+\z/ }
-
-#   has_many :appointments
+  #   has_many :appointments
 
   # def generate_jwt
   #   JWT.encode({ id: id,

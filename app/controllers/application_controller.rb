@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
   include ErrorHelper
   include SuccessHelper
 
-  # respond_to :json #, :html 
+  # respond_to :json #, :html
   # protect_from_forgery with: :null
 
   # before_filter do
