@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.3f8565dd.css",
-    "main.js": "/static/js/main.b136d790.js",
+    "main.css": "/static/css/main.b877f1ff.css",
+    "main.js": "/static/js/main.3853443a.js",
     "static/media/healthcare-technology-doctor-using-digital-tablet-icon-medical-network-hospital-background-162019727.jpg": "/static/media/healthcare-technology-doctor-using-digital-tablet-icon-medical-network-hospital-background-162019727.1d22035673a61d38367f.jpg",
     "index.html": "/index.html",
-    "main.3f8565dd.css.map": "/static/css/main.3f8565dd.css.map",
-    "main.b136d790.js.map": "/static/js/main.b136d790.js.map"
+    "main.b877f1ff.css.map": "/static/css/main.b877f1ff.css.map",
+    "main.3853443a.js.map": "/static/js/main.3853443a.js.map"
   },
   "entrypoints": [
-    "static/css/main.3f8565dd.css",
-    "static/js/main.b136d790.js"
+    "static/css/main.b877f1ff.css",
+    "static/js/main.3853443a.js"
   ]
 }
