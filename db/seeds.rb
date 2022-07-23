@@ -58,6 +58,8 @@ user_2 = User.create(
   password: "aa123456"
 )
 
+user_3 = User.create(username:"fake_user", email:"fake_user@fake.com", password:"aa123456")
+
 appointment_1 = Appointment.create(user: user_1, doctor: doctor_1, date: now)
 appointment_2 = Appointment.create(user: user_1, doctor: doctor_2, date: now.next_day)
 appointment_2 = Appointment.create(user: user_1, doctor: doctor_3, date: now.next_day.next_day)

@@ -104,6 +104,11 @@ GEM
     dry-core (0.8.0)
       concurrent-ruby (~> 1.0)
     erubi (1.10.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.10.0)
@@ -273,6 +278,7 @@ DEPENDENCIES
   devise
   devise-jwt
   dotenv-rails
+  factory_bot_rails
   jsonapi-rails
   pg (~> 1.1)
   pry (~> 0.13.1)

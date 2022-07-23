@@ -21,6 +21,19 @@ require 'rspec/rails'
 #
 # Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
+# module DeviseRequestSpecHelpers
+
+#   include Warden::Test::Helpers
+
+#   def sign_in(user)
+#     login_as(user, scope: :user)
+#   end
+
+#   def sign_out
+#     logout(:user)
+#   end
+
+# end
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
 begin
@@ -63,4 +76,7 @@ RSpec.configure do |config|
 
   include ErrorHelper
   include SuccessHelper
+
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :request
 end

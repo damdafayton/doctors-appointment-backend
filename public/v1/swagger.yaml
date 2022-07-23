@@ -1,0 +1,192 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/users/sign_in":
+    post:
+      summary: Logs in user
+      tags:
+      - User
+      parameters: []
+      responses:
+        '401':
+          description: user cant't log in with wrong credentials
+        '200':
+          description: user logged in
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+              required:
+              - user
+              - email
+              - password
+  "/api/appointments":
+    post:
+      summary: Creates an appointment
+      tags:
+      - Appointments
+      - Appointment
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '201':
+          description: appointment created
+        '422':
+          description: invalid request with wrong doctor field
+        '500':
+          description: invalid request with wrong date format
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                doctor_id:
+                  type: integer
+                date:
+                  type: date
+              required:
+              - doctor_id
+              - date
+    get:
+      summary: Retrieves all appointments of the user
+      tags:
+      - Appointments
+      security:
+      - Bearer: {}
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: appointments retrieved
+        '401':
+          description: user not logged in
+  "/api/appointments/{id}":
+    get:
+      summary: Retrieves an appointment
+      tags:
+      - Appointments
+      - Appointment
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: appointment found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  doctor_id:
+                    type: integer
+                  date:
+                    type: date
+                  created_at:
+                    type: date
+                  updated_at:
+                    type: date
+                required:
+                - id
+                - user_id
+                - doctor_id
+        '404':
+          description: appointment not found
+    put:
+      summary: Edits the appointment
+      tags:
+      - Appointments
+      - Appointment
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: appointment edited
+        '422':
+          description: invalid request with wrong doctor field
+        '500':
+          description: invalid request with wrong date field
+        '405':
+          description: user is not allowed to update other users's appointment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                doctor_id:
+                  type: integer
+                date:
+                  type: date
+              required:
+              - doctor_id
+              - date
+    delete:
+      summary: Deletes the appointment
+      tags:
+      - Appointments
+      - Appointment
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: appointment deleted
+        '405':
+          description: user is not allowed to delete other users's appointment
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000/
+components:
+  securitySchemes:
+    Bearer:
+      description: "..."
+      type: apiKey
+      name: Authorization
+      in: header

@@ -2,7 +2,7 @@ module SuccessHelper
   def appointment_success(key)
     messages = {
       deleted: 'Appointment deleted successfully.',
-      created: 'Appointment created.',
+      created: 'Appointment created.'
     }
     messages[key]
   end

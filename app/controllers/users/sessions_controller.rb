@@ -1,8 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
   respond_to :json
 
-
-
   def check
     p 'SESSION CHECK'
     render json: { user: current_user }, status: :ok
