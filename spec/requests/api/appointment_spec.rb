@@ -2,7 +2,7 @@ require 'swagger_helper'
 
 RSpec.describe 'DOCTOR APPOINTMENTS API', type: :request do
   access_token = nil
-  let(:Authorization) { access_token }
+  let(:Authorization) { "Bearer #{access_token}" }
   first_user = User.where(email: 'fake_user@fake.com')[0]
   second_user = User.all[1]
 
@@ -28,14 +28,14 @@ RSpec.describe 'DOCTOR APPOINTMENTS API', type: :request do
       response '401', 'user cant\'t log in with wrong credentials' do
         let(:credentials) { { user: { email: 'fake_user@fake.com', password: '123456' } } }
         run_test! do |res|
-          expect(res.body).to eq( {"error":"Invalid Email or password."}.to_json)
+          expect(res.body).to eq({ error: 'Invalid Email or password.' }.to_json)
         end
       end
 
       response '200', 'user logged in' do
         let(:credentials) { { user: { email: 'fake_user@fake.com', password: 'aa123456' } } }
         run_test! do |res|
-          access_token = res.headers['Authorization']
+          access_token = res.headers['Authorization'].split('Bearer ')[1]
           expect(res.body).to eq({ success: 'Logged in.' }.to_json)
         end
       end
@@ -137,7 +137,7 @@ RSpec.describe 'DOCTOR APPOINTMENTS API', type: :request do
         appointments = Appointment.where({ user_id: first_user.id })
         # p 'APPOINTMENT ID = ', appointments[0].id
         let(:id) { appointments[0].id }
-        let(:Authorization) { access_token }
+        let(:Authorization) { "Bearer #{access_token}" }
         p access_token, 'HI TOKEN'
         run_test! do |res|
           expect(res.body).to eq(appointments[0].to_json)
@@ -250,7 +250,7 @@ RSpec.describe 'DOCTOR APPOINTMENTS API', type: :request do
     appointments = Appointment.where({ user_id: second_user&.id })
     let(:id) { appointments[0].id }
     delete 'Deletes the appointment' do
-      tags 'Appointment'
+      tags '  Appointment'
       consumes 'application/json'
       produces 'application/json'
       parameter name: :Authorization, in: :header, type: :string
