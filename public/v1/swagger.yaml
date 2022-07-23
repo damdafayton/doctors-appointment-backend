@@ -36,7 +36,6 @@ paths:
     post:
       summary: Creates an appointment
       tags:
-      - Appointments
       - Appointment
       parameters:
       - name: Authorization
@@ -66,7 +65,7 @@ paths:
     get:
       summary: Retrieves all appointments of the user
       tags:
-      - Appointments
+      - Appointment
       security:
       - Bearer: {}
       parameters:
@@ -83,7 +82,6 @@ paths:
     get:
       summary: Retrieves an appointment
       tags:
-      - Appointments
       - Appointment
       parameters:
       - name: id
@@ -124,7 +122,6 @@ paths:
     put:
       summary: Edits the appointment
       tags:
-      - Appointments
       - Appointment
       parameters:
       - name: Authorization
@@ -161,7 +158,6 @@ paths:
     delete:
       summary: Deletes the appointment
       tags:
-      - Appointments
       - Appointment
       parameters:
       - name: Authorization
