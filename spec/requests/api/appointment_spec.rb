@@ -250,7 +250,7 @@ RSpec.describe 'DOCTOR APPOINTMENTS API', type: :request do
     appointments = Appointment.where({ user_id: second_user&.id })
     let(:id) { appointments[0].id }
     delete 'Deletes the appointment' do
-      tags '  Appointment'
+      tags 'Appointment'
       consumes 'application/json'
       produces 'application/json'
       parameter name: :Authorization, in: :header, type: :string

@@ -158,7 +158,7 @@ paths:
     delete:
       summary: Deletes the appointment
       tags:
-      - "  Appointment"
+      - Appointment
       parameters:
       - name: Authorization
         in: header
