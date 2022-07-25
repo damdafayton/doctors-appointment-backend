@@ -1,51 +1,53 @@
-# Doctors Appointment backend (API)
+# Doctors Appointment Project
 
-Backend repository for the final capstone project of the **Doctors Appointment**. Developed using Ruby on Rails, this is an API which responds in JSON.
-Visit the [Frontend repo](https://github.com/muneebulrehman/doctors-appointment-frontend)
+![Preview image](./ss-doctors.png)
 
-### Preview
+This app is an implementation of the design of [Murat Korkmaz](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign) from Behance for a doctor booking app.
 
-![Preview image](./snapshot.png)
+Back-end is built with rails according to RESTful api principles. [Click here](https://doctors-appointment-project.herokuapp.com/api-docs/) to see OpenAPI-compliant endpoints.
+
+Front-end is built with React according to mobile first, responsive design principles.
 
 ### Live version
 
-[Check live version here](https://doctors-appointment-frontend.netlify.app/)
+Please wait 20 to 30 seconds until the app loads.
+It might take longer than usual for heroku servers to load the app because its a free server.
+[Click here](https://doctors-appointment-project.herokuapp.com/) for live version.
 
 ### Built with
 
-- Ruby on Rails
+- Back-end
+  - Rails
+  - PostgreSQL
+- Front-end
+  - React
+  - Bootstrap
+  - SASS
+  - MaterialUI
+  - Redux/toolkit for global state
+  - Redux/toolkit/RTK Query for api state.
+- Testing
+  - RSpec, RSwag, Pry
+    - [Click here](./spec/requests/api/appointment_spec.rb) for specs used to build OpenAPI documentation.
+- Authentication
+  - Devise and JWT used for simple authentication.
 
-## Getting started
+### API
 
-#### Prerequisites
+[Click here for SwaggerUI](https://doctors-appointment-project.herokuapp.com/api-docs/)
 
-- Ruby
-- Ruby on Rails
-- PostgreSQL
+[Click for OpenAPI yaml](https://doctors-appointment-project.herokuapp.com/v1/swagger.yaml)
 
-#### Setup
+### Author
 
-Clone [this](https://github.com/muneebulrehman/doctors-appointment-backend.git) repo
-
-- Navigate to the directory and run `bundle install` to install the dependencies.
-- Run `rails db:create` to create the database.
-- Run `rails db:migrate` to migrate the database.
-- Run `rails s` to start the server.
-
-### Authors
-
-👤 **Muneeb Ul Rehman**
-
-- GitHub: [@Muneeb](https://github.com/muneebulrehman)
-- Twitter: [@NeatCoder\_](https://twitter.com/NeatCoder_)
-- LinkedIn: [Muneeb](https://www.linkedin.com/in/muneebulrehman/)
-
-👤 **Yucel**
+👤 **damdafayton**
 
 - GitHub: [@damdafayton](https://github.com/damdafayton)
 - LinkedIn: [Damda Fayton](https://www.linkedin.com/in/damdafayton/)
 
 ### 🤝 Contributions
+
+Design by [Murat Korkmaz](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign) from Behance.
 
 Contributions, issues, and feature requrests are welcome!
 
