@@ -4,9 +4,9 @@
 
 This app is an implementation of the design of [Murat Korkmaz](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign) from Behance for a doctor booking app.
 
-Back-end is built with rails according to RESTful api principles. [Click here](https://doctors-appointment-project.herokuapp.com/api-docs/) to see OpenAPI-compliant endpoints.
+The back-end is built with Rails according to RESTful API principles. [Click here](https://doctors-appointment-project.herokuapp.com/api-docs/) to see OpenAPI-compliant endpoints.
 
-Front-end is built with React according to mobile first, responsive design principles.
+The front-end is built with React according to mobile-first, responsive design principles.
 
 ### Live version
 
